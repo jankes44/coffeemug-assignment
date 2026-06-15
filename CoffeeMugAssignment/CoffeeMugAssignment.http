@@ -1,0 +1,42 @@
+@CoffeeMugAssignment_HostAddress = http://localhost:5280
+
+# Quick flow to place an order:
+# 1) Run GET /products and copy one productId from the response.
+# 2) Use one of the seeded customer IDs below.
+#    US:     11111111-1111-1111-1111-111111111111
+#    Europe: 22222222-2222-2222-2222-222222222222
+#    Asia:   33333333-3333-3333-3333-333333333333
+# 3) Run POST /orders.
+
+GET {{CoffeeMugAssignment_HostAddress}}/products
+Accept: application/json
+
+###
+
+POST {{CoffeeMugAssignment_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "name": "Widget",
+  "description": "Sample widget",
+  "price": 10,
+  "stock": 10
+}
+
+###
+
+POST {{CoffeeMugAssignment_HostAddress}}/orders
+Content-Type: application/json
+
+{
+  // Replace with a productId returned by GET /products.
+  "customerId": "11111111-1111-1111-1111-111111111111",
+  "products": [
+    {
+      "productId": "00000000-0000-0000-0000-000000000000",
+      "quantity": 1
+    }
+  ]
+}
+
+###
