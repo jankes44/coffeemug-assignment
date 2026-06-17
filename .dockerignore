@@ -5,6 +5,7 @@
 **/.vscode
 **/*.user
 **/TestResults
+**/node_modules
 .git
 .github
 **/.gitignore

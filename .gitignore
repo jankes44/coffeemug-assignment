@@ -43,6 +43,9 @@ project.assets.json
 *.db-shm
 *.db-wal
 
+# Node / npm (commitlint, husky)
+node_modules/
+
 # OS files
 .DS_Store
 Thumbs.db
