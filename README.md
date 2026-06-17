@@ -70,7 +70,7 @@ Integration tests run against a real PostgreSQL instance using [Testcontainers](
 
 ## Commit Conventions
 
-This repo follows [Conventional Commits](https://www.conventionalcommits.org/). Messages are linted both locally (a Husky git hook) and in CI (a GitHub Actions check on every pull request), using [commitlint](https://commitlint.js.org/) with the `config-conventional` rules.
+This repo follows [Conventional Commits](https://www.conventionalcommits.org/). Messages are linted both locally (a Husky git hook) and in CI (a GitHub Actions check on every pull request), using [commitlint](https://commitlint.js.org/) with the `@commitlint/config-conventional` rules.
 
 ### One-time setup
 
@@ -80,7 +80,7 @@ The local hook is powered by a small Node toolchain. After cloning, install it o
 npm install
 ```
 
-This pulls in `commitlint` and `husky` (dev dependencies only) and runs the `prepare` script, which installs the git hook into `.husky/`. From then on, every `git commit` is checked automatically.
+This pulls in `@commitlint/cli` and `husky` (dev dependencies only) and runs the `prepare` script, which enables the hooks in `.husky/`. From then on, every `git commit` is checked automatically.
 
 > Node.js 18+ is required for the local hook. If you don't have Node installed, you can skip this — the CI check still enforces the convention on pull requests. The hook only affects commits, not the .NET build or runtime.
 
