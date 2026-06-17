@@ -28,9 +28,9 @@ jobs:
 
     - name: Security Audit (fail on vulnerabilities)
       run: |
-        set -e
-        output=$(dotnet list package --vulnerable --include-transitive 2>&1 | tee audit.log)
-        if echo "$output" | grep -q "has the following vulnerable packages"; then
+        set -euo pipefail
+        dotnet list package --vulnerable --include-transitive 2>&1 | tee audit.log
+        if grep -q "has the following vulnerable packages" audit.log; then
           echo "::error::Vulnerable packages detected"
           exit 1
         fi

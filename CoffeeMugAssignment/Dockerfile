@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1.7
-FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
+ARG DOTNET_IMAGE_TAG=10.0-preview
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_IMAGE_TAG} AS build
 WORKDIR /src
 
 # Copy csproj files first for better layer caching
@@ -16,7 +17,7 @@ COPY . .
 RUN dotnet publish CoffeeMugAssignment/CoffeeMugAssignment.csproj \
     -c Release -o /app/publish --no-restore /p:UseAppHost=false
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_IMAGE_TAG} AS runtime
 WORKDIR /app
 COPY --from=build /app/publish ./
 EXPOSE 8080
