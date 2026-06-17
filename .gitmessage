@@ -1,0 +1,24 @@
+# <type>(<optional scope>): <short summary>   ← 50 chars or less
+#
+# <optional body: explain *what* and *why*, wrap at ~72 chars>
+#
+# <optional footer: BREAKING CHANGE: ... | Refs: #123 | Closes: #123>
+#
+# --- Conventional Commits cheat sheet --------------------------------
+# Allowed types:
+#   feat     A new feature
+#   fix      A bug fix
+#   docs     Documentation only changes
+#   style    Formatting; no code-meaning changes
+#   refactor Code change that neither fixes a bug nor adds a feature
+#   perf     A change that improves performance
+#   test     Adding or correcting tests
+#   build    Build system or external dependency changes
+#   ci       CI configuration files and scripts
+#   chore    Other changes that don't modify src or test files
+#   revert   Reverts a previous commit
+#
+# Breaking changes: append "!" after type/scope OR add a
+# "BREAKING CHANGE:" footer.
+#   e.g.  feat(api)!: drop support for legacy endpoint
+# ---------------------------------------------------------------------

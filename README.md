@@ -68,6 +68,44 @@ dotnet test
 
 Integration tests run against a real PostgreSQL instance using [Testcontainers](https://testcontainers.com/), so **Docker must be running**. A container is started automatically, the real EF Core migrations are applied to it, and it's torn down afterwards — there's nothing to set up by hand. The pure unit tests (such as pricing) don't need Docker.
 
+## Commit Conventions
+
+This repo follows [Conventional Commits](https://www.conventionalcommits.org/). Messages are linted both locally (a Husky git hook) and in CI (a GitHub Actions check on every pull request), using [commitlint](https://commitlint.js.org/) with the `config-conventional` rules.
+
+### One-time setup
+
+The local hook is powered by a small Node toolchain. After cloning, install it once:
+
+```bash
+npm install
+```
+
+This pulls in `commitlint` and `husky` (dev dependencies only) and runs the `prepare` script, which installs the git hook into `.husky/`. From then on, every `git commit` is checked automatically.
+
+> Node.js 18+ is required for the local hook. If you don't have Node installed, you can skip this — the CI check still enforces the convention on pull requests. The hook only affects commits, not the .NET build or runtime.
+
+### Message format
+
+```
+<type>(<optional scope>): <short summary>
+```
+
+Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. A breaking change adds a `!` (e.g. `feat!: ...`) or a `BREAKING CHANGE:` footer.
+
+Examples:
+
+```
+feat(orders): add cancel endpoint
+fix: return stock to products when an order is deleted
+docs: document commit conventions
+```
+
+A commit template with the full cheat sheet lives in [.gitmessage](.gitmessage). To use it as your editor prefill:
+
+```bash
+git config commit.template .gitmessage
+```
+
 ## Placing an Order
 
 1. Call `GET /products` and copy a real product `id`.
